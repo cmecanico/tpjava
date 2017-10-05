@@ -13,10 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
 
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
-
 import java.sql.Time;
 import java.util.Date;
 import util.DateLabelFormatter;
@@ -207,7 +203,7 @@ public class FormAReserva extends JFrame {
 		reserva.setPersona(cuenta.getPersonaPrueba());
 		reserva.setDetalle(txtDetalle.getText());
 		reserva.setFecha(java.sql.Date.valueOf(txtFecha.getText()));
-		reserva.setHora(java.sql.Time.valueOf((String)cbbxHora.getSelectedItem()));
+		//reserva.setHora(java.sql.Time.valueOf((String)cbbxHora.getSelectedItem()));
 		ctrlres.add(reserva);
 		this.limpiarCampos();
 		lblResultado.setText("Reservado");

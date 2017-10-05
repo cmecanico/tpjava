@@ -97,4 +97,3 @@ public class FormLogin extends JFrame {
 			this.setVisible(false);
 		}
 	}
-
