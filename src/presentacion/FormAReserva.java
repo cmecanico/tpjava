@@ -26,7 +26,6 @@ import entidades.Persona;
 import entidades.Reserva;
 import entidades.TipoElemento;
 import logica.*;
-import data.ManejadorTabla;
 import datos.Cuenta;
 
 import java.awt.event.MouseAdapter;
@@ -207,8 +206,8 @@ public class FormAReserva extends JFrame {
 		reserva.setElemento((Elemento)cbbxElemento.getSelectedItem());
 		reserva.setPersona(cuenta.getPersonaPrueba());
 		reserva.setDetalle(txtDetalle.getText());
-		reserva.setFecha(txtFecha.getText());
-		reserva.setHora((String)cbbxHora.getSelectedItem());
+		reserva.setFecha(java.sql.Date.valueOf(txtFecha.getText()));
+		reserva.setHora(java.sql.Time.valueOf((String)cbbxHora.getSelectedItem()));
 		ctrlres.add(reserva);
 		this.limpiarCampos();
 		lblResultado.setText("Reservado");
@@ -221,15 +220,6 @@ public class FormAReserva extends JFrame {
 		cbbxHora.setSelectedIndex(-1);
 		txtDetalle.setText("");
 		
-	}
-	
-	protected void btnConvertirSeparado() {
-		ManejadorTabla mt=new ManejadorTabla();
-		
-		java.sql.Date fecha = Date.valueOf(this.txtFecha.getText());
-		java.sql.Time hora = Time.valueOf(this.txtHora.getText());
-		
-		mt.guardarSeparado(fecha, hora);
 	}
 	
 }

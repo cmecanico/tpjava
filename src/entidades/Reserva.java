@@ -1,7 +1,5 @@
 package entidades;
 
-import java.util.*;
-
 public class Reserva {
 	
 	
@@ -10,13 +8,13 @@ public class Reserva {
 	private TipoElemento tipoelemento;
 	private Elemento elemento;
 	private String detalle;
-	private String fecha;
-	private String hora;
+	private java.sql.Date fecha;
+	private java.sql.Time hora;
 	
-	public String getHora() {
+	public java.sql.Time getHora() {
 		return hora;
 	}
-	public void setHora(String hora) {
+	public void setHora(java.sql.Time hora) {
 		this.hora = hora;
 	}
 	public int getId() {
@@ -50,11 +48,10 @@ public class Reserva {
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
-	public String getFecha() {
+	public java.sql.Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(java.sql.Date fecha) {
 		this.fecha = fecha;
 	}
-
 }
