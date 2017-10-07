@@ -49,6 +49,9 @@ public class FormAReserva extends JFrame {
 	private JComboBox cbbxHora;
 	private JLabel lblResultado;
 	private JTextField txtFecha;
+	private JButton btnReservar;
+	private JLabel lblId;
+	private JTextField txtId;
 
 	/**
 	 * Launch the application.
@@ -72,7 +75,7 @@ public class FormAReserva extends JFrame {
 	 */
 	public FormAReserva() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 447, 433);
+		setBounds(100, 100, 447, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -102,7 +105,7 @@ public class FormAReserva extends JFrame {
 		txtDetalle.setBounds(36, 203, 345, 123);
 		contentPane.add(txtDetalle);
 		
-		JButton btnReservar = new JButton("Reservar");
+		btnReservar = new JButton("Reservar");
 		btnReservar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -171,6 +174,18 @@ public class FormAReserva extends JFrame {
 		contentPane.add(txtFecha);
 		txtFecha.setColumns(10);
 		
+		lblId = new JLabel("ID Reserva");
+		lblId.setEnabled(false);
+		lblId.setBounds(36, 379, 90, 14);
+		contentPane.add(lblId);
+		
+		txtId = new JTextField();
+		txtId.setEnabled(false);
+		txtId.setEditable(false);
+		txtId.setBounds(128, 379, 86, 20);
+		contentPane.add(txtId);
+		txtId.setColumns(10);
+		
 		
 	}
 	
@@ -202,11 +217,21 @@ public class FormAReserva extends JFrame {
 		reserva.setElemento((Elemento)cbbxElemento.getSelectedItem());
 		reserva.setPersona(cuenta.getPersonaPrueba());
 		reserva.setDetalle(txtDetalle.getText());
-		reserva.setFecha(java.sql.Date.valueOf(txtFecha.getText()));
+		reserva.setFecha(txtFecha.getText());
+		reserva.setHora((String)cbbxHora.getSelectedItem());
+		//reserva.setFecha(java.sql.Date.valueOf(txtFecha.getText()));
 		//reserva.setHora(java.sql.Time.valueOf((String)cbbxHora.getSelectedItem()));
+		if (btnReservar.getText()== "Reservar") {
 		ctrlres.add(reserva);
 		this.limpiarCampos();
 		lblResultado.setText("Reservado");
+		}
+		else if (btnReservar.getText() == "Borrar"){
+		reserva.setId(Integer.parseInt(txtId.getText()));
+		ctrlres.delete(reserva);
+		this.limpiarCampos();
+		lblResultado.setText("Eliminado");
+		}
 	}
 	
 	private void limpiarCampos(){
@@ -218,4 +243,20 @@ public class FormAReserva extends JFrame {
 		
 	}
 	
+	public void mostrarReserva(Reserva r){
+		this.mapearAform(r);
+		btnReservar.setText("Borrar");
+		this.show();
+	}
+	
+	public void mapearAform(Reserva r){
+		this.cbbxTipoElemento.setSelectedItem(r.getTipoelemento());
+		this.cbbxElemento.setSelectedItem(r.getElemento());
+		this.txtFecha.setText(r.getFecha());
+		this.cbbxHora.setSelectedItem(r.getHora());
+		this.txtDetalle.setText(r.getDetalle());
+		this.lblId.enable(true);
+		this.txtId.enable(true);
+		this.txtId.setText(String.valueOf(r.getId()));
+	}
 }

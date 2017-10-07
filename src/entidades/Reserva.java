@@ -8,15 +8,36 @@ public class Reserva {
 	private TipoElemento tipoelemento;
 	private Elemento elemento;
 	private String detalle;
-	private java.sql.Date fecha;
-	private java.sql.Time hora;
+	private String fecha;
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	public String getHora() {
+		return hora;
+	}
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+	private String hora;
+	//private java.sql.Date fecha;
+	//private java.sql.Time hora;
 	
-	public java.sql.Time getHora() {
+	/*public java.sql.Time getHora() {
 		return hora;
 	}
 	public void setHora(java.sql.Time hora) {
 		this.hora = hora;
 	}
+	public java.sql.Date getFecha() {
+		return fecha;
+	}
+	public void setFecha(java.sql.Date fecha) {
+		this.fecha = fecha;
+	}
+	*/
 	public int getId() {
 		return id;
 	}
@@ -48,10 +69,5 @@ public class Reserva {
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
-	public java.sql.Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(java.sql.Date fecha) {
-		this.fecha = fecha;
-	}
+	
 }

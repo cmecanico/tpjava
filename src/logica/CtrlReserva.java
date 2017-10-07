@@ -23,12 +23,12 @@ public class CtrlReserva {
 		datares.delete(res);
 	}
 	
-	public void update(Reserva res)throws Exception{				//mantener id al modificar?
+	/*public void update(Reserva res)throws Exception{				//mantener id al modificar?
 		DataReserva datares = new DataReserva();
 		datares.delete(res);
 		datares.add(res);
 				
-	}
+	}*/
 	
 	public Reserva consulta(Reserva res)throws Exception{			
 		Reserva resEncontrada = this.buscaReserva(res);
@@ -37,7 +37,7 @@ public class CtrlReserva {
 	
 	public Reserva buscaReserva(Reserva res)throws Exception{
 		DataReserva datares = new DataReserva();
-		Reserva resEncontrada = datares.getByDetalle(res);			//cambiar de atributo para la busqueda
+		Reserva resEncontrada = datares.getById(res);			//cambiar de atributo para la busqueda
 		return resEncontrada;
 	}
 	
