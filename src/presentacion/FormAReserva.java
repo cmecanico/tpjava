@@ -211,7 +211,7 @@ public class FormAReserva extends JFrame {
 		return elesvalidos;
 	}
 	
-	private void reservar() throws Exception{
+	private void reservar() throws Exception {
 		Reserva reserva = new Reserva();
 		reserva.setTipoelemento((TipoElemento)cbbxTipoElemento.getSelectedItem());
 		reserva.setElemento((Elemento)cbbxElemento.getSelectedItem());

@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JDesktopPane;
 import java.awt.BorderLayout;
 
+@SuppressWarnings("deprecation")
 public class Menu {
 
 	private JFrame frame;
@@ -71,12 +72,37 @@ public class Menu {
 		mnuAcciones.add(mnuABMCPersona);
 		
 		nuABMCTipoElemento = new JMenuItem("ABMC de Tipos de Elemento");
+		nuABMCTipoElemento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mnuABMCTipoElementoClick();
+			}
+		});
 		mnuAcciones.add(nuABMCTipoElemento);
 		
 		nuABMCElemento = new JMenuItem("ABMC de Elementos");
+		nuABMCElemento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					mnuABMCElementoClick();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mnuAcciones.add(nuABMCElemento);
 		
 		nuAReserva = new JMenuItem("Hacer una Reserva");
+		nuAReserva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					mnuAReservaClick();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		mnuAcciones.add(nuAReserva);
 		
 		nuCBReserva = new JMenuItem("Listado de Reservas");
@@ -99,19 +125,31 @@ public class Menu {
 		desktopPane = new JDesktopPane();
 		frame.getContentPane().add(desktopPane, BorderLayout.CENTER);
 	}
+	
+	protected void mnuABMCElementoClick() throws Exception{
+		FormABMCElementos ambele = new FormABMCElementos();
+		ambele.show();
+	}
+	
+	protected void mnuABMCTipoElementoClick(){
+		FormABMCTipoElementos ambtipo = new FormABMCTipoElementos();
+		ambtipo.show();
+	}
 
 	protected void mnuABMCPersonaClick() {
 		FormABMCPersonas abmPer = new FormABMCPersonas();
 		abmPer.show();
-		//FormABMCPersonas abmPer = new FormABMCPersonas();
-		//desktopPane.add(abmPer);
-		//abmPer.setVisible(true);
 	}
 	
 	protected void mnuListadoPersonaClick() {
 		FormCBReserva cbRes = new FormCBReserva();
 		desktopPane.add(cbRes);
 		cbRes.setVisible(true);
+	}
+	
+	protected void mnuAReservaClick() throws Exception{
+		FormAReserva ares = new FormAReserva();
+		ares.show();
 	}
 	
 	protected void salir(){

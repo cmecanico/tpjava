@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import datos.*;
+import logica.*;
 
 public class FormLogin extends JFrame {
 
@@ -74,7 +75,15 @@ public class FormLogin extends JFrame {
 		btnIngresar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ingresar();
+				try {
+					ingresar();
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnIngresar.setBounds(166, 234, 89, 23);
@@ -83,17 +92,17 @@ public class FormLogin extends JFrame {
 		
 	}
 	
-		protected void ingresar() {
-			Cuenta cuenta = new Cuenta();
-			if (!cuenta.validarUsuario(txtUsuario.getText(), new String(txtContraseña.getPassword()))) {
+		protected void ingresar() throws HeadlessException, Exception {
+			CtrlABMCPersona ctrl = new CtrlABMCPersona();
+			if (!ctrl.getLogin(txtUsuario.getText(), (new String(txtContraseña.getPassword())))) {
 				JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecto");
 				txtUsuario.setText("");
 				txtContraseña.setText("");
 				txtUsuario.requestFocusInWindow();
 				return;
 			}
-			FormOpciones formopciones = new FormOpciones();
-			formopciones.setVisible(true);
+			Menu menu = new Menu();
+			menu.setVisible(true);
 			this.setVisible(false);
 		}
 	}

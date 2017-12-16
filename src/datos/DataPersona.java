@@ -54,6 +54,38 @@ public class DataPersona {
 		
 	}
 	
+	public boolean getLogin(String usuario, String contrasenia) throws Exception{
+		Persona p=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from persona where usuario=? and contraseña=?");
+			stmt.setString(1, usuario);
+			stmt.setString(2, contrasenia);
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){
+					p=new Persona();
+					p.setUsuario(rs.getString("usuario"));
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally{
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw e;
+			}
+		}
+		if (p != null) {
+			return true; }
+		else { 
+			return false; }
+	}
+	
 	public Persona getByDni(Persona per) throws Exception{		//no me muestra el id
 		Persona p=null;
 		PreparedStatement stmt=null;
